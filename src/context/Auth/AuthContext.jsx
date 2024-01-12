@@ -1,15 +1,15 @@
 /* eslint-disable react/prop-types */
 
 import  { createContext, useContext, useState, useEffect } from 'react';
-import { auth } from '../../firebase/FirebaseConfig'; // Adjust the path to your Firebase configuration
+import { auth } from '../../firebase/FirebaseConfig'; 
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      console.log(authUser);
       if (authUser) {
         setUser(authUser);
       } else {
