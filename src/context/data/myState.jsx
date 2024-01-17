@@ -14,7 +14,7 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 import { toast } from "react-toastify";
-import { fireDB } from "../../firebase/firebaseConfig";
+import { fireDB } from "../../firebase/FirebaseConfig";
 
 export default function myState(props) {
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -120,8 +120,8 @@ export default function myState(props) {
   }, []);
 
   const [searchkey, setSearchkey] = useState("");
-  const [filterType, setFilterType] = useState("");
-  const [filterPrice, setFilterPrice] = useState("");
+  const [filterType, setFilterType] = useState("all");
+  const [filterPrice, setFilterPrice] = useState("all");
 
   const edithandle = (item) => {
     setProducts(item);

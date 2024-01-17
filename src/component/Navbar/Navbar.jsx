@@ -7,25 +7,28 @@ import myContext from "../../context/data/myContext";
 import { RxCross2 } from "react-icons/rx";
 import { useSelector } from "react-redux";
 import { getAuth, signOut } from "firebase/auth";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   const context = useContext(myContext);
   const { toggleMode, mode } = context;
-
-
+  const navigate = useNavigate();
 
   const user = JSON.parse(localStorage.getItem("user"));
   //  console.log(user.user.email);
   const auth = getAuth();
   const logout = () => {
-    signOut(auth).then(() => {
-      console.log("Logout Successful");
-      
-    }).catch((error) => {
-      console.log(error);
-    });
+    signOut(auth)
+      .then(() => {
+        toast.success("Logout Successful");
+        navigate("/login");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     localStorage.clear("user");
     //window.location.href = "/login";
   };

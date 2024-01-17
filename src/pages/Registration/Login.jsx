@@ -5,7 +5,7 @@ import { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { auth } from "../../firebase/FirebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import Loader from '../../component/loader/Loader';
+import Loader from "../../component/loader/Loader";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -17,7 +17,7 @@ function Login() {
   const { loading, setLoading } = context;
 
   const login = async () => {
-    setLoading(true)
+    setLoading(true);
     try {
       const result = await signInWithEmailAndPassword(auth, email, password);
       localStorage.setItem("user", JSON.stringify(result));
@@ -32,10 +32,10 @@ function Login() {
         theme: "colored",
       });
       navigate("/");
-      setLoading(false)
+      setLoading(false);
     } catch (error) {
       console.log(error);
-      setLoading(false)
+      setLoading(false);
     }
   };
 
@@ -46,7 +46,7 @@ function Login() {
       }}
     >
       <div className=" flex justify-center items-center h-screen">
-        {loading && <Loader/> }
+        {loading && <Loader />}
         <div className=" bg-gray-800 px-10 py-10 rounded-xl ">
           <div className="">
             <h1 className="text-center text-white text-xl mb-4 font-bold">
